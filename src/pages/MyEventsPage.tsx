@@ -1,13 +1,10 @@
 import { useAuth } from "@/hooks/useAuth";
 import { Navigate } from "react-router-dom";
-import AdminDashboard from "@/components/admin/AdminDashboard";
-import StudentEvents from "@/components/student/StudentEvents";
+import MyEvents from "@/components/student/MyEvents";
 
-export default function Index() {
-  const { user, role, loading } = useAuth();
-
+export default function MyEventsPage() {
+  const { user, loading } = useAuth();
   if (loading) return <div className="min-h-screen flex items-center justify-center"><div className="animate-pulse text-muted-foreground">Loading...</div></div>;
   if (!user) return <Navigate to="/auth" replace />;
-
-  return role === "admin" ? <AdminDashboard /> : <StudentEvents />;
+  return <MyEvents />;
 }
